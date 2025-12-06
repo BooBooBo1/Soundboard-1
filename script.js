@@ -36,6 +36,9 @@ document.querySelectorAll('.sound-button').forEach(button => {
             currentSound.pause();
             currentSound.currentTime = 0;
         }
+        if (currentButton) {
+            currentButton.classList.remove('playing');
+        }
         const audio = new Audio(src);
         audio.volume = currentVolume;
         audio.muted = isMuted;
@@ -47,9 +50,6 @@ document.querySelectorAll('.sound-button').forEach(button => {
         
         
         //UI Updates
-        if (currentButton) {
-            currentButton.classList.remove('playing');
-        }
         button.classList.add('playing');
         nowPlayingText.textContent = button.textContent;
         audio.addEventListener('ended', () => {
