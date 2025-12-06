@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="icon" href="data:,">
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Soundboard</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/tone/14.8.49/Tone.js"></script>
+</head>
+<body>
+    <div class="mainContainer">
+        
+        <div class="header">
+            <div class="now-playing">
+                <h2>Now Playing</h2>
+                <div class="now-playing-text" id="nowPlayingText">No sound playing</div>
+            </div>
+        <div class="settings">
+            <h2>Settings</h2>
+
+            <div class="volume-control">
+                <label for="volumeSlider">Volume: <span id="volumeValue">50</span>%</label>
+                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            </div>
+
+            <div class="setting-row">
+                <label>
+                    <input type="checkbox" id="muteToggle">
+                    Mute
+                </label>
+            </div>
+
+            <div class="setting-row">
+                <label for="speedSelect">Speed:</label>
+                <select id="speedSelect">
+                    <option value="0.75">0.75x</option>
+                    <option value="1" selected>1x</option>
+                    <option value="1.25">1.25x</option>
+                    <option value="1.5">1.5x</option>
+                    <option value="2">2x</option>
+                </select>
+            </div>
+
+            <div class="setting-row">
+                <label>
+                    <input type="checkbox" id="loopToggle">
+                    Loop current sound
+                </label>
+            </div>
+        </div>
+
+        </div>
+
+        <div class="soundboard">
+            <button class="sound-button" id="megaKnight">Mega Knight</button>
+            <button class="sound-button" id="sixSeven">67</button>
+            <button class="sound-button" id="bruh">Bruh</button>
+            <button class="sound-button" id="catLaughing">Car Laugh</button>
+            <button class="sound-button" id="aughh">Aughh</button>
+            <button class="sound-button" id="bloodScrem">Blood Scream</button>
+            <button class="sound-button" id="fahh">Fahh</button>
+            <button class="sound-button" id="FNAF">Freddy JumpScare</button>
+            <button class="sound-button" id="gahDamn">Gawd Damn</button>
+            <button class="sound-button" id="getOut">Get Out</button>
+            <button class="sound-button" id="mustard">MUSTARDD</button>
+            <button class="sound-button" id="rizz">Rizz</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

@@ -1,0 +1,189 @@
+@font-face {
+    font-family: 'TabernaSans';
+    src: url('TabernaSans-Black.ttf') format('truetype');
+    font-weight: normal;
+    font-style: normal;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+:root {
+    --bg-primary: #1F1B18;       
+    --bg-panel: #2A2521;         
+    --accent-primary: #6B8896;   
+    --accent-wood: #8C6F5A;      
+    --font-primary: #EDE3D8;     
+    --font-soft: #CBBEAE;        
+    --highlight-soft: #3A332E;   
+    --pad-active: #8FAABA;       
+    --success: #7FA48A;          
+    --danger: #B36A63;           
+    --border-soft: #4A423C;      
+}
+
+body {
+    min-height: 95vh;
+    display: flex;
+    justify-content: center;
+    padding: 1.5rem;
+    background: var(--bg-primary);
+    font-family: 'TabernaSans', sans-serif;
+}
+
+.mainContainer {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 100%;
+    max-width: 900px;
+    background: var(--bg-panel);
+    border-radius: 24px;
+    padding: 2.5rem 2rem 2rem;
+    border: 1px solid var(--border-soft);
+    color: var(--font-primary);
+}
+
+.header {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    height: 30vh;
+    border-radius: 24px;
+    padding: 1rem;
+    gap: 1rem;
+    background: var(--highlight-soft);
+}
+
+.now-playing {
+    padding: 2rem;
+    background: var(--bg-panel);
+    border-radius: 24px;
+    color: var(--font-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.now-playing h2 {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    background: transparent;
+}
+
+.now-playing-text {
+    font-size: 2rem;
+    background: transparent;
+    color: var(--font-primary);
+    flex: 1;
+    display: flex;
+    align-items: center;
+}
+
+.settings {
+    padding: 2rem;
+    background: var(--bg-panel);
+    border-radius: 24px;
+    color: var(--font-primary);
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+.settings h2 {
+    font-size: 1.2rem;
+    color: var(--accent-primary);
+    background: transparent;
+    margin-bottom: 0.5rem;
+}
+
+.volume-control {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    background: transparent;
+}
+
+.volume-control label {
+    font-size: 0.9rem;
+    color: var(--font-soft);
+    background: transparent;
+}
+
+.volume-control input[type="range"] {
+    width: 100%;
+    cursor: pointer;
+    background: transparent;
+}
+
+.soundboard {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1rem;
+    border-radius: 24px;
+    padding: 1rem;
+    background: var(--highlight-soft);
+}
+
+.sound-button {
+    border-radius: 24px;
+    height: 100px;
+    padding: 2rem;
+    cursor: pointer;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-soft);
+    color: var(--font-primary);
+    font-size: 1rem;
+    font-family: 'TabernaSans', sans-serif;
+    transition: all 0.2s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.sound-button:hover {
+    background: var(--highlight-soft);
+    border-color: var(--accent-primary);
+    transform: translateY(-2px);
+}
+
+.sound-button:active,
+.sound-button.playing {
+    background: var(--pad-active);
+    border-color: var(--pad-active);
+    transform: scale(0.95);
+}
+
+.sound-button.empty {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.sound-button.empty:hover {
+    background: var(--bg-panel);
+    transform: none;
+}
+
+@media (max-width: 768px) {
+    .header {
+        grid-template-columns: 1fr;
+        height: auto;
+    }
+    
+    .soundboard {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 480px) {
+    .soundboard {
+        grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .sound-button {
+        height: 80px;
+        padding: 1rem;
+        font-size: 0.9rem;
+    }
+}
