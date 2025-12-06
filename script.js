@@ -32,10 +32,6 @@ document.querySelectorAll('.sound-button').forEach(button => {
         const soundID = button.id;
         const src = sounds[soundID];
         //Audio Logic
-        if (!src) {
-            console.error('No sound for', soundID);
-            return;
-        }
         if (currentSound){
             currentSound.pause();
             currentSound.currentTime = 0;
@@ -48,7 +44,8 @@ document.querySelectorAll('.sound-button').forEach(button => {
         audio.play().catch(e => console.error(e));
         currentSound = audio;
         currentButton = button;
-
+        
+        
         //UI Updates
         if (currentButton) {
             currentButton.classList.remove('playing');
