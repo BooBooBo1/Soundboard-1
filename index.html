@@ -2,7 +2,6 @@
 <html lang="en">
 <head>
     <link rel="icon" href="data:,">
-
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Soundboard</title>
@@ -11,45 +10,39 @@
 </head>
 <body>
     <div class="mainContainer">
-        
         <div class="header">
+            
             <div class="now-playing">
                 <h2>Now Playing</h2>
                 <div class="now-playing-text" id="nowPlayingText">No sound playing</div>
             </div>
-        <div class="settings">
-            <h2>Settings</h2>
 
-            <div class="volume-control">
-                <label for="volumeSlider">Volume: <span id="volumeValue">50</span>%</label>
-                <input type="range" id="volumeSlider" min="0" max="100" value="50">
+            <div class="settings">
+                <h2>Settings</h2>
+                <div class="volume-control">
+                    <label for="volumeSlider">Volume: <span id="volumeValue">50</span>%</label>
+                    <input type="range" id="volumeSlider" min="0" max="100" value="50">
+                </div>
+                <div class="setting-row">
+                    <label><input type="checkbox" id="muteToggle">Mute</label>
+                </div>
+                <div class="setting-row">
+                    <label for="speedSelect">Speed:</label>
+                    <select id="speedSelect">
+                        <option value="0.75">0.75x</option>
+                        <option value="1" selected>1x</option>
+                        <option value="1.25">1.25x</option>
+                        <option value="1.5">1.5x</option>
+                        <option value="2">2x</option>
+                    </select>
+                </div>
+                <div class="setting-row">
+                    <label>
+                        <input type="checkbox" id="loopToggle">
+                        Loop current sound
+                    </label>
+                </div>
             </div>
-
-            <div class="setting-row">
-                <label>
-                    <input type="checkbox" id="muteToggle">
-                    Mute
-                </label>
-            </div>
-
-            <div class="setting-row">
-                <label for="speedSelect">Speed:</label>
-                <select id="speedSelect">
-                    <option value="0.75">0.75x</option>
-                    <option value="1" selected>1x</option>
-                    <option value="1.25">1.25x</option>
-                    <option value="1.5">1.5x</option>
-                    <option value="2">2x</option>
-                </select>
-            </div>
-
-            <div class="setting-row">
-                <label>
-                    <input type="checkbox" id="loopToggle">
-                    Loop current sound
-                </label>
-            </div>
-        </div>
 
         </div>
 
@@ -69,7 +62,33 @@
         </div>
     </div>
 
-    <script src="script.js?v=2"></script>
+<div class="timerPanel">
+  <h2>Meme Timer</h2>
+  <div class="timerPanel-controls">
+    <label for="timerSeconds">Seconds:</label>
+    <input type="number" id="timerSeconds" min="1" value="10">
 
+        <label for="timerSound">Sound:</label>
+        <select id="timerSound">
+            <option value="megaKnight">Mega Knight</option>
+            <option value="sixSeven">67</option>
+            <option value="bruh">Bruh</option>
+            <option value="catLaughing">Car Laugh</option>
+            <option value="aughh">Aughh</option>
+            <option value="bloodScrem">Blood Scream</option>
+            <option value="fahh">Fahh</option>
+            <option value="FNAF">Freddy JumpScare</option>
+            <option value="gahDamn">Gawd Damn</option>
+            <option value="getOut">Get Out</option>
+            <option value="mustard">MUSTARDD</option>
+            <option value="rizz">Rizz</option>
+        </select>
+
+    <button id="startTimer">Start timer</button>
+  </div>
+  <div id="timerDisplay">Timer: 0s</div>
+</div>
+
+    <script src="script.js?v=3"></script>
 </body>
 </html>
