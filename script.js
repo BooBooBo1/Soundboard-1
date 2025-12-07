@@ -1,4 +1,4 @@
-//Variables
+//variables
 const sounds = {
     megaKnight: 'mega-knight-clash-royale.mp3',
     sixSeven: '67-normal.mp3',
@@ -26,7 +26,7 @@ let isMuted = false;
 let currentSpeed = parseFloat(speedSelect.value);
 let isLooping = false;
 
-//Audio Playing Logic
+//audio Playing Logic
 document.querySelectorAll('.sound-button').forEach(button => {
     button.addEventListener('click', () => {
         const soundID = button.id;
@@ -49,7 +49,7 @@ document.querySelectorAll('.sound-button').forEach(button => {
         currentButton = button;
         
         
-        //UI Updates
+        //updates
         button.classList.add('playing');
         nowPlayingText.textContent = button.textContent;
         audio.addEventListener('ended', () => {
@@ -63,7 +63,7 @@ document.querySelectorAll('.sound-button').forEach(button => {
     })
 })
 
-//Volume Control Logic
+//volume Control Logic
 volumeSlider.addEventListener('input', () => {
     currentVolume = volumeSlider.value / 100;     
     volumeValue.textContent = volumeSlider.value;
@@ -72,7 +72,7 @@ volumeSlider.addEventListener('input', () => {
     }
 });
 
-// Additional Controls
+//additional Controls
 muteToggle.addEventListener('change', () => {
     isMuted = muteToggle.checked;
     if (currentSound) {
@@ -90,4 +90,42 @@ loopToggle.addEventListener('change', () => {
     if (currentSound) {
         currentSound.loop = isLooping;
     }
+});
+
+// timer state (trying to make a timer here, not perfect, had to use some help from tools, but not entirely copied)
+const timerSecondsInput = document.getElementById('timerSeconds');
+const timerSoundSelect = document.getElementById('timerSound');
+const startTimerButton = document.getElementById('startTimer');
+const timerDisplay = document.getElementById('timerDisplay');
+let timerInterval = null;
+
+startTimerButton.addEventListener('click', () => {
+    if (timerInterval) {
+        clearInterval(timerInterval);
+        timerInterval = null;
+    }
+    let remaining = parseInt(timerSecondsInput.value, 10);
+    if (isNaN(remaining) || remaining <= 0) {
+        return;
+    }
+    const soundID = timerSoundSelect.value;
+    const src = sounds[soundID];
+    if (!src) {
+        console.error('No sound for timer:', soundID);
+        return;
+    }
+    timerDisplay.textContent = `Timer: ${remaining}s`;
+    timerInterval = setInterval(() => {
+        remaining--;
+        timerDisplay.textContent = `Timer: ${remaining}s`;
+        if (remaining <= 0) {
+            clearInterval(timerInterval);
+            timerInterval = null;
+            const audio = new Audio(src);
+            audio.volume = currentVolume;
+            audio.muted = isMuted;
+            audio.playbackRate = currentSpeed;
+            audio.play().catch(e => console.error(e));
+        }
+    }, 1000);
 });
