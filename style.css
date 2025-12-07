@@ -4,13 +4,11 @@
     font-weight: normal;
     font-style: normal;
 }
-
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
 :root {
     --bg-primary: #1F1B18;       
     --bg-panel: #2A2521;         
@@ -24,16 +22,21 @@
     --danger: #B36A63;           
     --border-soft: #4A423C;      
 }
-
 body {
     min-height: 95vh;
     display: flex;
-    justify-content: center;
-    padding: 1.5rem;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    justify-content: flex-start;
+    padding: 24px;
     background: var(--bg-primary);
     font-family: 'TabernaSans', sans-serif;
+    color: var(--font-primary);
 }
 
+
+/* Main container */
 .mainContainer {
     display: flex;
     flex-direction: column;
@@ -42,148 +45,239 @@ body {
     max-width: 900px;
     background: var(--bg-panel);
     border-radius: 24px;
-    padding: 2.5rem 2rem 2rem;
+    padding: 40px 32px 32px;
     border: 1px solid var(--border-soft);
-    color: var(--font-primary);
+    box-shadow: 0 18px 40px rgba(0, 0, 0, 0.55);
 }
-
 .header {
     display: grid;
-    grid-template-columns: 2fr 1fr;
+    grid-template-columns: 2fr 1.2fr;
     height: 30vh;
     border-radius: 24px;
-    padding: 1rem;
-    gap: 1rem;
+    padding: 16px;
+    gap: 16px;
     background: var(--highlight-soft);
 }
-
+/* now playing */
 .now-playing {
-    padding: 2rem;
+    padding: 32px;
     background: var(--bg-panel);
     border-radius: 24px;
-    color: var(--font-primary);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
+    border: 1px solid var(--border-soft);
 }
-
 .now-playing h2 {
-    font-size: 1.2rem;
+    font-size: 19px;
     color: var(--accent-primary);
-    background: transparent;
+    letter-spacing: 0.05em;
 }
-
 .now-playing-text {
-    font-size: 2rem;
-    background: transparent;
+    font-size: 28px;
     color: var(--font-primary);
     flex: 1;
     display: flex;
     align-items: center;
 }
-
+/* settings */
 .settings {
-    padding: 2rem;
+    padding: 24px 28px;
     background: var(--bg-panel);
     border-radius: 24px;
-    color: var(--font-primary);
     display: flex;
     flex-direction: column;
-    gap: 1rem;
+    gap: 16px;
+    border: 1px solid var(--border-soft);
 }
-
 .settings h2 {
-    font-size: 1.2rem;
+    font-size: 19px;
     color: var(--accent-primary);
-    background: transparent;
-    margin-bottom: 0.5rem;
+    margin-bottom: 4px;
+    letter-spacing: 0.05em;
 }
-
-.volume-control {
+.volume-control, .setting-row {
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 6px;
     background: transparent;
 }
-
-.volume-control label {
-    font-size: 0.9rem;
+.volume-control label, .setting-row label {
+    font-size: 14px;
     color: var(--font-soft);
-    background: transparent;
 }
-
 .volume-control input[type="range"] {
     width: 100%;
     cursor: pointer;
     background: transparent;
+    accent-color: var(--accent-primary);
+}
+.setting-row input[type="checkbox"] {
+    accent-color: var(--accent-primary);
+    cursor: pointer;
+}
+#speedSelect, #timerSound, #timerSeconds {
+    background: var(--bg-panel);
+    border-radius: 20px;
+    border: 1px solid var(--border-soft);
+    color: var(--font-primary);
+    padding: 6px 12px;
+    font-size: 14px;
+    font-family: 'TabernaSans', sans-serif;
+    outline: none;
+    cursor: pointer;
+}
+#timerSeconds {
+    width: 90px;
+    text-align: center;
+}
+#speedSelect:focus,#timerSound:focus,#timerSeconds:focus {
+    border-color: var(--accent-primary);
 }
 
+
+/* soundboard */
 .soundboard {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
-    gap: 1rem;
+    gap: 16px;
     border-radius: 24px;
-    padding: 1rem;
+    padding: 16px;
     background: var(--highlight-soft);
 }
-
 .sound-button {
     border-radius: 24px;
     height: 100px;
-    padding: 2rem;
+    padding: 32px;
     cursor: pointer;
     background: var(--bg-panel);
     border: 1px solid var(--border-soft);
     color: var(--font-primary);
-    font-size: 1rem;
+    font-size: 16px;
     font-family: 'TabernaSans', sans-serif;
-    transition: all 0.2s ease;
+    transition: background 0.15s ease, transform 0.1s ease, border-color 0.15s ease, box-shadow 0.15s ease;
     position: relative;
     overflow: hidden;
+    box-shadow: 0 8px 0 #221c18;
 }
-
+.sound-button::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(255, 255, 255, 0.06);
+    opacity: 0;
+    transition: opacity 0.15s ease;
+}
+.sound-button:hover::before {
+    opacity: 1;
+}
 .sound-button:hover {
     background: var(--highlight-soft);
     border-color: var(--accent-primary);
     transform: translateY(-2px);
+    box-shadow: 0 10px 0 #221c18;
 }
-
-.sound-button:active,
-.sound-button.playing {
+.sound-button:active, .sound-button.playing {
     background: var(--pad-active);
     border-color: var(--pad-active);
-    transform: scale(0.95);
+    transform: translateY(2px) scale(0.97);
+    box-shadow: 0 3px 0 #1c252b;
 }
-
 .sound-button.empty {
-    opacity: 0.5;
+    opacity: 0.45;
     cursor: not-allowed;
+    box-shadow: none;
 }
-
 .sound-button.empty:hover {
     background: var(--bg-panel);
     transform: none;
 }
 
+
+/* Timer */
+.timerPanel {
+    width: 100%;
+    max-width: 900px;
+    background: var(--bg-panel);
+    border-radius: 24px;
+    padding: 22px 26px 28px;
+    border: 1px solid var(--border-soft);
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.5);
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+.timerPanel h2 {
+    font-size: 18px;
+    color: var(--accent-primary);
+    letter-spacing: 0.05em;
+    margin-bottom: 2px;
+}
+.timerPanel label {
+    font-size: 14px;
+    color: var(--font-soft);
+}
+.timerPanel-controls {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    margin-top: 4px;
+}
+#startTimer {
+    padding: 7px 16px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    background:#6B8896;
+    color: var(--font-primary);
+    font-size: 14px;
+    font-weight: 600;
+    font-family: 'TabernaSans', sans-serif;
+    box-shadow: 0 5px 0 #3d4e56;
+    transition: background 0.15s ease, transform 0.1s ease, box-shadow 0.1s ease;
+}
+#startTimer:hover {
+    background: #8abf9a;
+}
+#startTimer:active {
+    transform: translateY(2px);
+    box-shadow: 0 2px 0 rgb(40, 62, 48);
+}
+#timerDisplay {
+    margin-top: 6px;
+    font-size: 14px;
+    color: var(--font-soft);
+}
+
+
+/* mediaquries */
 @media (max-width: 768px) {
+    .mainContainer {
+        padding: 28px 24px 24px;
+    }
     .header {
         grid-template-columns: 1fr;
         height: auto;
     }
-    
     .soundboard {
         grid-template-columns: repeat(3, 1fr);
     }
+    .timerPanel {
+        padding: 20px 22px 24px;
+    }
 }
-
 @media (max-width: 480px) {
     .soundboard {
         grid-template-columns: repeat(2, 1fr);
     }
-    
     .sound-button {
         height: 80px;
-        padding: 1rem;
-        font-size: 0.9rem;
+        padding: 18px;
+        font-size: 14px;
+    }
+    .timerPanel-controls {
+        flex-direction: column;
+        align-items: flex-start;
     }
 }
